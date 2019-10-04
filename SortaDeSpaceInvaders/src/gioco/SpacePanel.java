@@ -2,16 +2,22 @@ package gioco;
 
 import java.awt.*;
 import java.awt.event.*;
-import javax.swing.*;
+import java.util.ArrayList;
+
+import javax.swing.*;;
 
 public class SpacePanel extends JPanel implements ActionListener, KeyListener {
 
 	private static final long serialVersionUID = 1L;
 	private Nave ship;
+	private Cattivone tmpCattivone;
 	private PiuPiu piu;
 	private ImageIcon background = new ImageIcon("image/backgroundSkin.jpg");
 	private Timer timer;
+	private static int cattivone = 30;
 	private boolean canPiuPiu = true;
+	private int level = 1;
+	private ArrayList<Cattivone> listaCattivoni = new ArrayList();
 
 	public SpacePanel() {
 		this.setSize(800, 800);
@@ -22,10 +28,44 @@ public class SpacePanel extends JPanel implements ActionListener, KeyListener {
 		this.requestFocusInWindow();
 	}
 
+	public static int getVitaCattivone() {
+		return cattivone;
+	}
+
+	public void setup() {
+		if (level != 3 && level != 6 && level != 9 && level != 12) {
+			for (int i = 0; i < 6; i++) {
+				for (int j = 0; j < 5; j++) {
+					tmpCattivone = new Cattivone((20 + (i * 100)), (20 + (j * 60)), level, 0, null, j, 40, 40);
+					listaCattivoni.add(tmpCattivone);
+				}
+			}
+		}
+		if (level == 3 || level == 6 || level == 9 || level == 12) {
+			tmpCattivone = new Cattivone(20, 20, 3, 0, null, 100, 150, 150);
+			listaCattivoni.add(tmpCattivone);
+		}
+		ship = new Nave(375, 700, null);
+	}
+
 	@Override
 	public void paint(Graphics g) {
 		background.paintIcon(null, g, 0, -150);
-
+		
+		/*if (piu != null) {
+            if (hitMarker) {
+                g.setColor(Color.WHITE);
+                if (level != 3 && level != 6 && level != 9 && level != 12) {
+                    g.drawString("+ 100", markerX + 20, markerY -= 1);
+                } else {
+                    g.drawString("- 1", markerX + 75, markerY += 1);
+                }
+            }
+        }*/
+            for (int index = 0; index < listaCattivoni.size(); index++) {
+                listaCattivoni.get(index).paint(g);
+            }
+		
 		ship.paint(g);
 		if (piu != null) {
 			piu.paint(g);
@@ -67,7 +107,18 @@ public class SpacePanel extends JPanel implements ActionListener, KeyListener {
 
 	public void updateG(int fps) {
 		ship.move();
-
+		
+		if ((listaCattivoni.get(listaCattivoni.size() - 1).getX() + listaCattivoni.get(listaCattivoni.size() - 1).getSpeedX()) > 760 || (listaCattivoni.get(0).getX() + listaCattivoni.get(0).getSpeedX()) < 0) {
+            for (int index = 0; index < listaCattivoni.size(); index++) {
+            	listaCattivoni.get(index).setX(listaCattivoni.get(index).getSpeedX() * -1);
+            	listaCattivoni.get(index).setY(listaCattivoni.get(index).getSpeedY() + 10);
+            }
+        } else {
+            for (int index = 0; index < listaCattivoni.size(); index++) {
+            	listaCattivoni.get(index).move();
+            }
+        }
+		
 		if (piu != null) {
 			piu.move();
 			if (piu.getY() < 0) {
@@ -77,7 +128,7 @@ public class SpacePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	public void start() {
-		ship = new Nave(375, 700, null);
+		setup();
 		timer = new Timer(1000 / 120, new ActionListener() {
 
 			// Tracks the number of frames that have been produced.
