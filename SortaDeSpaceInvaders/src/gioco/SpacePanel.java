@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
-import javax.swing.*;;
+import javax.swing.*;
 
 public class SpacePanel extends JPanel implements ActionListener, KeyListener {
 
@@ -17,6 +17,7 @@ public class SpacePanel extends JPanel implements ActionListener, KeyListener {
 	private static int cattivone = 30;
 	private boolean canPiuPiu = true;
 	private int level = 1;
+	public int score = 0;
 	private ArrayList<Cattivone> listaCattivoni = new ArrayList();
 
 	public SpacePanel() {
@@ -51,21 +52,17 @@ public class SpacePanel extends JPanel implements ActionListener, KeyListener {
 	@Override
 	public void paint(Graphics g) {
 		background.paintIcon(null, g, 0, -150);
-		
-		/*if (piu != null) {
-            if (hitMarker) {
-                g.setColor(Color.WHITE);
-                if (level != 3 && level != 6 && level != 9 && level != 12) {
-                    g.drawString("+ 100", markerX + 20, markerY -= 1);
-                } else {
-                    g.drawString("- 1", markerX + 75, markerY += 1);
-                }
-            }
-        }*/
-            for (int index = 0; index < listaCattivoni.size(); index++) {
-                listaCattivoni.get(index).paint(g);
-            }
-		
+
+		/*
+		 * if (piu != null) { if (hitMarker) { g.setColor(Color.WHITE); if (level != 3
+		 * && level != 6 && level != 9 && level != 12) { g.drawString("+ 100", markerX +
+		 * 20, markerY -= 1); } else { g.drawString("- 1", markerX + 75, markerY += 1);
+		 * } } }
+		 */
+		for (int index = 0; index < listaCattivoni.size(); index++) {
+			listaCattivoni.get(index).paint(g);
+		}
+
 		ship.paint(g);
 		if (piu != null) {
 			piu.paint(g);
@@ -81,12 +78,12 @@ public class SpacePanel extends JPanel implements ActionListener, KeyListener {
 	public void keyPressed(KeyEvent e) {
 		System.out.println(e);
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT)
-			ship.setSpeedX(4);
+			ship.setSpeedX(3);
 		if (e.getKeyCode() == KeyEvent.VK_LEFT)
-			ship.setSpeedX(-4);
+			ship.setSpeedX(-3);
 		if (e.getKeyCode() == KeyEvent.VK_SPACE)
 			if (canPiuPiu) {
-				piu = new PiuPiu(ship.getX() + 22, ship.getY() - 20, ship.getSpeedX(), 15, Color.RED);
+				piu = new PiuPiu(ship.getX() + 22, ship.getY() - 20, ship.getSpeedX(), 10, Color.RED);
 				canPiuPiu = false;
 			}
 	}
@@ -107,22 +104,41 @@ public class SpacePanel extends JPanel implements ActionListener, KeyListener {
 
 	public void updateG(int fps) {
 		ship.move();
-		
-		if ((listaCattivoni.get(listaCattivoni.size() - 1).getX() + listaCattivoni.get(listaCattivoni.size() - 1).getSpeedX()) > 760 || (listaCattivoni.get(0).getX() + listaCattivoni.get(0).getSpeedX()) < 0) {
-            for (int index = 0; index < listaCattivoni.size(); index++) {
-            	listaCattivoni.get(index).setX(listaCattivoni.get(index).getSpeedX() * -1);
-            	listaCattivoni.get(index).setY(listaCattivoni.get(index).getSpeedY() + 10);
-            }
-        } else {
-            for (int index = 0; index < listaCattivoni.size(); index++) {
-            	listaCattivoni.get(index).move();
-            }
-        }
-		
+		// movimento cattivoni
+		if ((listaCattivoni.get(listaCattivoni.size() - 1).getX()
+				+ listaCattivoni.get(listaCattivoni.size() - 1).getSpeedX()) > 760
+				|| (listaCattivoni.get(0).getX() + listaCattivoni.get(0).getSpeedX()) < 0) {
+			for (int index = 0; index < listaCattivoni.size(); index++) {
+				listaCattivoni.get(index).setSpeedX(listaCattivoni.get(index).getSpeedX() * -1);
+				listaCattivoni.get(index).setY(listaCattivoni.get(index).getY() + 10);
+			}
+		} else {
+			for (int index = 0; index < listaCattivoni.size(); index++) {
+				listaCattivoni.get(index).move();
+			}
+		}
+
+		// PiuPiu
 		if (piu != null) {
 			piu.move();
 			if (piu.getY() < 0) {
 				canPiuPiu = true;
+			}
+			// Cattivone colpito
+			for (int i = 0; i < listaCattivoni.size(); i++) {
+				if (piu.isBoom(listaCattivoni.get(i))) {
+					piu = new PiuPiu(0, 0, 0, 0, null);
+					canPiuPiu = true;
+					// Updates score for normal levels
+					if (level != 3 && level != 6 && level != 9 && level != 12) {
+						score += 100;
+						// hitMarker = true;
+						// markerX = enemyList.get(index).getXPosition(); // Gets positions that the "+
+						// 100" spawns off of
+						// markerY = enemyList.get(index).getYPosition();
+						listaCattivoni.remove(i);
+					}
+				}
 			}
 		}
 	}

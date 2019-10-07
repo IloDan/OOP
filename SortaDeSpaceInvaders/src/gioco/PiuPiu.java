@@ -13,7 +13,7 @@ public class PiuPiu extends AbstractGambeObject {
 	@Override
 	public void move() {
 		y-=sy;
-		x+=sx;
+		//x+=sx;
 	}
 
 	@Override

@@ -20,9 +20,9 @@ public class Frame extends JFrame{
         game.setDoubleBuffered(true);
         this.setSize(800,800);
         // Add the Breakout instance to this frame's content pane to display it
-  //  this.add(game);
-         this.getContentPane().add(game); 
-      // this.pack();
+    this.add(game);
+  //       this.getContentPane().add(game); 
+       this.pack();
      this.setResizable(false);
     // this.setFocusable(true);
        this.setLocationRelativeTo(null);
