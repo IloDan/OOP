@@ -12,4 +12,12 @@ public class GamePanel extends JPanel {
 	public void paint() {
 		
 	}
+	
+	public void update() {
+		
+	}
+
+	public void start() {
+		
+	}
 }

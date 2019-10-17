@@ -4,8 +4,11 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-public class Player extends AbstractGambeObject {
+import javax.swing.*;
 
+public class Player extends AbstractGambeObject {
+	ImageIcon bart=new ImageIcon("imges/Bart.gif");
+	
 	
 	public Player(int x, int y, int sx, int sy, Color c) {
 		super(x, y, sx, sy, c);
@@ -14,12 +17,12 @@ public class Player extends AbstractGambeObject {
 
 	@Override
 	public void move() {
-		if()
+		x+=sx;
 	}
 
 	@Override
 	public void paint(Graphics g) {
-		
+		bart.paintIcon(null, g, this.getX(), this.getY());
 	}
 
 	@Override
