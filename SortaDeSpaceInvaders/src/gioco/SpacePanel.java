@@ -217,7 +217,7 @@ public class SpacePanel extends JPanel implements ActionListener, KeyListener {
 				listaCattivoni.get(index).move();
 			}
 		}
-
+//ciao
 		// PiuPiu
 		if (piu != null) {
 			piu.move();
