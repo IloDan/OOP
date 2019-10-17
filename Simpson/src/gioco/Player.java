@@ -14,7 +14,7 @@ public class Player extends AbstractGambeObject {
 
 	@Override
 	public void move() {
-		
+		if()
 	}
 
 	@Override
