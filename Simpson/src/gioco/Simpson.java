@@ -42,6 +42,5 @@ public class Simpson extends Canvas implements Runnable{
 		frame.requestFocus();
 		game.start();
 	}
-	//simpson
-
+	//simpsonre
 }
