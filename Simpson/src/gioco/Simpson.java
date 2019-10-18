@@ -16,6 +16,7 @@ public class Simpson extends Canvas implements Runnable{
 	}
 	public void stop() {
 		System.exit(0);
+		//stop
 	}
 	@Override
 	public void run() {
