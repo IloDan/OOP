@@ -11,16 +11,29 @@ public class Simpson extends Canvas implements Runnable{
 	public static final int WIDTH=1000;
 	public static final int HEIGHT=WIDTH/4*3;
 	
+	public boolean running;
+	
 	public void start() {
+		if(running)
+			return;
+		running=true;
 		new Thread(this, "SimpsonMain-Thread").start();
 	}
 	public void stop() {
-		System.exit(0);
+		double target=60.0;
+		double nsPerTick=1000000000.0/target;
+		long lastTime
+		if(!running)
+			return;
+		running=false;
 		//stop
 	}
 	@Override
 	public void run() {
-		System.out.println("Running");
+		while(running) {
+			
+		}
+		System.exit(0);
 	}
 
 	public static void main(String[] args) {
