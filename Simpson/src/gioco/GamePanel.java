@@ -3,7 +3,7 @@ package gioco;
 import javax.swing.*;
 
 public class GamePanel extends JPanel {
-	
+	private ImageIcon background = new ImageIcon("images/"
 	
 	public void setUp() {
 		
