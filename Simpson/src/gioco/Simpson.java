@@ -22,7 +22,7 @@ public class Simpson extends Canvas implements Runnable{
 	public void stop() {
 		double target=60.0;
 		double nsPerTick=1000000000.0/target;
-		long lastTime
+		long lastTime;
 		if(!running)
 			return;
 		running=false;
