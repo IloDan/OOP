@@ -1,16 +1,16 @@
 package gioco;
 
-import javax.swing.*;
+import javax.swing.JPanel;
 
-public class GamePanel extends JPanel {
-	private ImageIcon background = new ImageIcon("images/"
+public class GamePanel extends JPanel  {
+
 	
 	public void setUp() {
 		
 	}
 	
 	public void paint() {
-		
+	
 	}
 	
 	public void update() {
@@ -20,4 +20,5 @@ public class GamePanel extends JPanel {
 	public void start() {
 		
 	}
+
 }
