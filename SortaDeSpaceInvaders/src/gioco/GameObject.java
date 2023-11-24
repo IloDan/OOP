@@ -5,7 +5,6 @@ import java.awt.Rectangle;
 
 public interface GameObject {
 	
-
 	public void move();
 	public void paint (Graphics g);
 	public Rectangle getBounds();

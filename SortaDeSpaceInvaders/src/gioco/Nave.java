@@ -3,15 +3,14 @@ package gioco;
 import java.awt.*;
 import javax.swing.*;
 
-public class Nave extends AbstractGambeObject {
-	ImageIcon nave = new ImageIcon("image/shipSkin.gif");
-    ImageIcon bonusEnemy = new ImageIcon("image/bonusEnemySkin.gif");
-    ImageIcon lifeCounterShip = new ImageIcon("image/shipSkinSmall.gif");
+public class Nave extends AbstractGameObject {
+	ImageIcon nave = new ImageIcon("image/shipskin.png");
+    ImageIcon bonusEnemy = new ImageIcon("image/bonus.gif");
+    ImageIcon vite = new ImageIcon("image/shipSkinSmall.gif");
 	
 	public Nave(int x, int y, Color c) {
 		super(x,y,c);
 	}
-
 	@Override
 	public void move() {
 		x += sx;
@@ -28,15 +27,9 @@ public class Nave extends AbstractGambeObject {
 		nave.paintIcon(null, g, this.getX(), this.getY());
 	}
 	
-	public void bonusDraw(Graphics g) {
-
-        bonusEnemy.paintIcon(null, g, this.getX(), this.getY());
-    }
-
-    // Draw ships for life counter
     public void lifeDraw(Graphics g) {
 
-        lifeCounterShip.paintIcon(null, g, this.getX(), this.getY());
+        vite.paintIcon(null, g, this.getX(), this.getY());
     }
 
 	@Override

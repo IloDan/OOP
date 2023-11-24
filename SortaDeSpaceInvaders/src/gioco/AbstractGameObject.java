@@ -2,19 +2,19 @@ package gioco;
 
 import java.awt.Color;
 
-public abstract class AbstractGambeObject implements GameObject{
+public abstract class AbstractGameObject implements GameObject{
 	int x,y;
 	int sx,sy;
 	Color c;
-	
-	public AbstractGambeObject(int x, int y, Color color) {
+	boolean isBoom;
+	public AbstractGameObject(int x, int y, Color color) {
 		super();
 		this.x = x;
 		this.y = y;
 		this.c = color;
 	}
 
-	public AbstractGambeObject(int x, int y, int sx, int sy, Color c) {
+	public AbstractGameObject(int x, int y, int sx, int sy, Color c) {
 		super();
 		this.x = x;
 		this.y = y;
@@ -61,8 +61,9 @@ public abstract class AbstractGambeObject implements GameObject{
 	public void setColor(Color c) {
 		this.c = c;
 	}
-	public boolean isBoom(AbstractGambeObject other) {
-		return other.getBounds().intersects(this.getBounds());
+	public boolean isBoom(AbstractGameObject other) {
+		isBoom= other.getBounds().intersects(this.getBounds());
+		return isBoom;
 	}
 	
 }

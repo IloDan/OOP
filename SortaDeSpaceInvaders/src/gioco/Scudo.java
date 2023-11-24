@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-public class Scudo extends AbstractGambeObject {
+public class Scudo extends AbstractGameObject {
 
 	private int width, height;
 	

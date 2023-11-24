@@ -6,13 +6,13 @@ import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
 
-public class Cattivone extends AbstractGambeObject {
+public class Cattivone extends AbstractGameObject {
 
 	private int tipoCattivone, w, h;
-	ImageIcon alien1 = new ImageIcon("image/alien1Skin.gif");
-	ImageIcon alien2 = new ImageIcon("image/alien2Skin.gif");
-	ImageIcon alien3 = new ImageIcon("image/alien3Skin.gif");
-	ImageIcon alienBoss = new ImageIcon("image/boss1.gif");
+	ImageIcon alien1 = new ImageIcon("image/alien2Skin.png");
+	ImageIcon alien2 = new ImageIcon("image/alien2Skin.png");
+	ImageIcon alien3 = new ImageIcon("image/alien2Skin.png");
+	ImageIcon alienBoss = new ImageIcon("image/boss1.png");
 	ImageIcon alienBoss2 = new ImageIcon("image/boss2.gif");
 	ImageIcon alienBoss3 = new ImageIcon("image/boss3.gif");
 

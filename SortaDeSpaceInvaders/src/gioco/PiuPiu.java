@@ -4,10 +4,11 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-public class PiuPiu extends AbstractGambeObject {
+public class PiuPiu extends AbstractGameObject {
 	
 	public PiuPiu(int x, int y, int sx,int sy, Color color) {
 		super(x,y,sx,sy,color);
+		this.c=color;
 	}
 
 	@Override
@@ -18,7 +19,7 @@ public class PiuPiu extends AbstractGambeObject {
 
 	@Override
 	public void paint(Graphics g) {
-		g.setColor(Color.RED);
+		g.setColor(c);
 		g.fillRect(this.getX(),this.getY(), 7, 15);
 	}
 
